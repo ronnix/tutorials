@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tutorials</title><link href="https://ronnix.github.io/tutorials/" rel="alternate"></link><link href="https://ronnix.github.io/tutorials/feeds/all.atom.xml" rel="self"></link><id>https://ronnix.github.io/tutorials/</id><updated>2015-01-02T00:00:00+01:00</updated><entry><title>Pyramid tutorial</title><link href="https://ronnix.github.io/tutorials/pyramid-tutorial.html" rel="alternate"></link><updated>2015-01-02T00:00:00+01:00</updated><author><name>Ronan Amicel</name></author><id>tag:ronnix.github.io,2015-01-02:tutorials/pyramid-tutorial.html</id><summary type="html">&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;In order to follow this tutorial, you should have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a Unix-like (such as OS X or Linux)&lt;/li&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Setting up a Python virtualenv&lt;/h2&gt;
+&lt;p&gt;A &lt;em&gt;virtualenv&lt;/em&gt; (or &lt;em&gt;venv&lt;/em&gt;) is an isolated Python environment where we’ll be able to install packages locally, in isolation from the global Python packages.&lt;/p&gt;
+&lt;h3&gt;Installing virtualenvwrapper&lt;/h3&gt;
+&lt;p&gt;In this tutorial, we’ll use &lt;a href="https://pypi.python.org/pypi/virtualenvwrapper"&gt;virtualenvwrapper&lt;/a&gt; to create and manage virtualenvs. To learn how to install and use it, you may want to read this companion tutorial first: &lt;a href="https://ronnix.github.io/tutorials/working-with-python-virtualenvs.html"&gt;"Working with Python virtualenvs"&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Creating a virtualenv&lt;/h3&gt;
+&lt;p&gt;We’ll use the &lt;code&gt;mkvirtualenv&lt;/code&gt; command from &lt;em&gt;virtualenvwrapper&lt;/em&gt; to create a &lt;em&gt;virtualenv&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv pyramid-tutorial
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Setting up a working directory&lt;/h3&gt;
+&lt;p&gt;Let’s create a directory where we can put our files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir pyramid-tutorial
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;pyramid-tutorial
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Using &lt;em&gt;virtualenvwrapper&lt;/em&gt;, we can associate this working directory with our virtualenv:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;setvirtualenvproject
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, each time we will use the &lt;code&gt;workon pyramid-tutorial&lt;/code&gt; command, the virtualenv will be activated and the current directory will be changed to the project’s working directory.&lt;/p&gt;
+&lt;p&gt;We can also use the &lt;code&gt;cdproject&lt;/code&gt; command to go back to this directory at any time.&lt;/p&gt;
+&lt;h2&gt;Starting a pyramid project&lt;/h2&gt;
+&lt;p&gt;First, we’ll make sure that the virtualenv is activated:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;workon pyramid-tutorial
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we’ll install the &lt;code&gt;pyramid&lt;/code&gt; package from the Python Package Index (PyPI):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install pyramid
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Using version control&lt;/h2&gt;
+&lt;p&gt;We initialize a git repository:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git init
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Working with Python virtualenvs</title><link href="https://ronnix.github.io/tutorials/working-with-python-virtualenvs.html" rel="alternate"></link><updated>2015-01-02T00:00:00+01:00</updated><author><name>Ronan Amicel</name></author><id>tag:ronnix.github.io,2015-01-02:tutorials/working-with-python-virtualenvs.html</id><summary type="html">&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;In order to follow this tutorial, you should have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a Unix-like (such as OS X or Linux)&lt;/li&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What is a Python virtual environment?&lt;/h2&gt;
+&lt;p&gt;A &lt;em&gt;virtualenv&lt;/em&gt; (or &lt;em&gt;venv&lt;/em&gt;) is an isolated Python environment where we can install packages locally, in isolation from the global Python packages.&lt;/p&gt;
+&lt;p&gt;When you're working on multiple projects, it also allows different projects to use different versions of the same framework or library.&lt;/p&gt;
+&lt;h2&gt;The tools&lt;/h2&gt;
+&lt;p&gt;The traditional way to create &lt;em&gt;virtualenvs&lt;/em&gt; is using the aptly-named &lt;a href="https://pypi.python.org/pypi/virtualenv"&gt;virtualenv&lt;/a&gt; tool by Ian Bicking.&lt;/p&gt;
+&lt;p&gt;A popular enhancement is &lt;a href="https://pypi.python.org/pypi/virtualenvwrapper"&gt;virtualenvwrapper&lt;/a&gt; by Doug Hellmann, that makes it more convenient to use and adds some powerful features.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we'll first see how to use &lt;em&gt;virtualenv&lt;/em&gt; directly, then we'll see how to use &lt;em&gt;virtualenvwrapper&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Note that starting with version 3.3, Python comes with some basic support for virtualenvs, including the new &lt;code&gt;pyvenv&lt;/code&gt; command: https://docs.python.org/3/library/venv.html&lt;/p&gt;
+&lt;h2&gt;Option 1: virtualenv&lt;/h2&gt;
+&lt;p&gt;In this section, we'll see how to create and manage &lt;em&gt;virtualenvs&lt;/em&gt; using the &lt;a href="https://pypi.python.org/pypi/virtualenv"&gt;virtualenv&lt;/a&gt; tool.&lt;/p&gt;
+&lt;h3&gt;Installing virtualenv&lt;/h3&gt;
+&lt;p&gt;We’ll start by installing &lt;code&gt;virtualenv&lt;/code&gt; using the pip package manager:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that you may need to use &lt;code&gt;sudo&lt;/code&gt; to run the command with administrative privileges:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Creating a virtualenv&lt;/h3&gt;
+&lt;p&gt;To create a virtualenv, we must provide the name of the directory that will contain the virtualenv files. If the directory does not exist, it will be created:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv VENV
+New python executable in VENV/bin/python2.7
+Also creating executable in VENV/bin/python
+Installing setuptools, pip...done.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that if you don't want to use the default Python interpreter, you can choose to use a specific one in this virtualenv using the &lt;code&gt;--python&lt;/code&gt; flag. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv VENV --python&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/bin/python3.4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can see that the &lt;code&gt;virtualenv&lt;/code&gt; command has created a &lt;code&gt;VENV&lt;/code&gt; directory, and that this directory contains several subdirectories:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ls VENV
+bin     include lib
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Working with a virtualenv&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;bin&lt;/code&gt; subdirectory contains a &lt;code&gt;python&lt;/code&gt; executable that is bound to this virtualenv. This is an isolated Python interpreter, that only has access to the packages installed within the virtualenv:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;VENV/bin/python --version
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;bin&lt;/code&gt; subdirectory also contains a &lt;code&gt;pip&lt;/code&gt; executable that can be used to install packages inside the virtualenv:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;VENV/bin/pip install somepackage
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The Python files from installed packages will typically be found in &lt;code&gt;VENV/lib/pythonX.X/site-packages/&lt;/code&gt; (the exact path depends on the Python version), and any included scripts will be in &lt;code&gt;VENV/bin/&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Activating a virtualenv&lt;/h3&gt;
+&lt;p&gt;Each virtualenv comes with a convenient shell script that can modify the shell's &lt;code&gt;PATH&lt;/code&gt; viariable so that commands from the virtualenv (that is those in the &lt;code&gt;VENV/bin&lt;/code&gt; directory) are the first to be found.&lt;/p&gt;
+&lt;p&gt;This script also changes your prompt to remind you that you're working with this specific virtualenv.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;source &lt;/span&gt;VENV/bin/activate
+&lt;span class="o"&gt;(&lt;/span&gt;VENV&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;which python
+&lt;span class="o"&gt;(&lt;/span&gt;VENV&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;which pip
+&lt;span class="o"&gt;(&lt;/span&gt;VENV&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;VENV&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$VIRTUAL_ENV&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that you need to use &lt;code&gt;source&lt;/code&gt; in order to run the script in the context of the current shell (otherwise the script would be run in a sub-process, and could not change the environment of its parent shell).&lt;/p&gt;
+&lt;p&gt;When you're done, you can revert those changes by using the &lt;code&gt;deactivate&lt;/code&gt; alias:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(VENV)$ deactivate
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Option 2: virtualenvwrapper&lt;/h2&gt;
+&lt;p&gt;The most convenient and most powerful way to create and manage virtualenvs is to use &lt;a href="https://pypi.python.org/pypi/virtualenvwrapper"&gt;virtualenvwrapper&lt;/a&gt;. As its name suggests, it is built on top of the &lt;em&gt;virtualenv&lt;/em&gt; tool.&lt;/p&gt;
+&lt;h3&gt;Installing virtualenvwrapper&lt;/h3&gt;
+&lt;p&gt;We’ll start by installing &lt;code&gt;virtualenvwrapper&lt;/code&gt; using pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install virtualenvwrapper
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You may need to use &lt;code&gt;sudo&lt;/code&gt; to run the command with administrative privileges:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install virtualenvwrapper
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then you must add the following lines to your shell startup script (typically &lt;code&gt;$HOME/.bashrc&lt;/code&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;export WORKON_HOME=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.virtualenvs&lt;/span&gt;
+&lt;span class="x"&gt;export PROJECT_HOME=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/Devel&lt;/span&gt;
+&lt;span class="x"&gt;source /usr/local/bin/virtualenvwrapper.sh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that you have to source this file in order to apply the changes to the current shell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Creating a virtualenv&lt;/h2&gt;
+&lt;p&gt;Now we’ll use the &lt;code&gt;mkvirtualenv&lt;/code&gt; command to create a &lt;em&gt;virtualenv&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv myproject
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that the virtualenv directory is not created in the current directory, but in the &lt;code&gt;$WORKON_HOME&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;A nice benefit of this is that files from the virtualenv are not mixed with your project files, so there is no need to add configuration to your text editor or version control system to ignore them.&lt;/p&gt;
+&lt;p&gt;Also note that the prompt has changed to tell you that the &lt;em&gt;virtualenv&lt;/em&gt; has automatically been activated (no need to manually source the &lt;code&gt;activate&lt;/code&gt; script).&lt;/p&gt;
+&lt;h2&gt;Activating a virtualenv&lt;/h2&gt;
+&lt;p&gt;To activate an existing virtualenv, &lt;em&gt;virtualenvwrapper&lt;/em&gt; provides a command called &lt;code&gt;workon&lt;/code&gt;, that supports autocompletion:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;workon myproject
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When you are done working with a virtualenv, you can deactivate it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;deactivate
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Setting up a project directory&lt;/h3&gt;
+&lt;p&gt;Let’s say we want a directory where we can put our project source code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir myproject
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myproject
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;setvirtualenvproject&lt;/code&gt; allows us to associate this working directory with our virtualenv:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;setvirtualenvproject
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, each time we will use the &lt;code&gt;workon myproject&lt;/code&gt; command, the virtualenv will be activated and the current directory will be changed to the project’s working directory.&lt;/p&gt;
+&lt;p&gt;We can also use the &lt;code&gt;cdproject&lt;/code&gt; command to go back to this directory at any time.&lt;/p&gt;</summary></entry></feed>

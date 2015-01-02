@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Pyramid tutorial - Tutorials</title>	
+	<meta name="author" content="Ronan Amicel">
+	
+
+	<meta name="description" content="Prerequisites In order to follow this tutorial, you should have: a Unix-like (such as OS X or Linux) Python Git Setting up a Python virtualenv A virtualenv (or venv) is an isolated Python environment where we’ll be able to install packages locally, in isolation from the global Python packages ...">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="https://ronnix.github.io/tutorials/theme/css/main.css" type="text/css" />
+		
+
+    <link href="https://ronnix.github.io/tutorials/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Tutorials Atom Feed" />
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="https://ronnix.github.io/tutorials/feeds/all.atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed"/></a>
+	    </div>
+		<a href="https://ronnix.github.io/tutorials" class="title">Tutorials</a>
+      </header>
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+		<h1>Pyramid tutorial</h1>
+		
+<div class="metadata">
+  <time datetime="2015-01-02T00:00:00+01:00" pubdate>Ven 02 janvier 2015</time>
+    <address class="vcard author">
+      by <a class="url fn" href="https://ronnix.github.io/tutorials/author/ronan-amicel.html">Ronan Amicel</a>
+    </address>
+  in <a href="https://ronnix.github.io/tutorials/category/python.html">Python</a>
+</div>		
+		<h2>Prerequisites</h2>
+<p>In order to follow this tutorial, you should have:</p>
+<ul>
+<li>a Unix-like (such as OS X or Linux)</li>
+<li>Python</li>
+<li>Git</li>
+</ul>
+<h2>Setting up a Python virtualenv</h2>
+<p>A <em>virtualenv</em> (or <em>venv</em>) is an isolated Python environment where we’ll be able to install packages locally, in isolation from the global Python packages.</p>
+<h3>Installing virtualenvwrapper</h3>
+<p>In this tutorial, we’ll use <a href="https://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> to create and manage virtualenvs. To learn how to install and use it, you may want to read this companion tutorial first: <a href="https://ronnix.github.io/tutorials/working-with-python-virtualenvs.html">"Working with Python virtualenvs"</a></p>
+<h3>Creating a virtualenv</h3>
+<p>We’ll use the <code>mkvirtualenv</code> command from <em>virtualenvwrapper</em> to create a <em>virtualenv</em>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv pyramid-tutorial
+</pre></div>
+
+
+<h3>Setting up a working directory</h3>
+<p>Let’s create a directory where we can put our files:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir pyramid-tutorial
+<span class="nv">$ </span><span class="nb">cd </span>pyramid-tutorial
+</pre></div>
+
+
+<p>Using <em>virtualenvwrapper</em>, we can associate this working directory with our virtualenv:</p>
+<div class="highlight"><pre><span class="nv">$ </span>setvirtualenvproject
+</pre></div>
+
+
+<p>Now, each time we will use the <code>workon pyramid-tutorial</code> command, the virtualenv will be activated and the current directory will be changed to the project’s working directory.</p>
+<p>We can also use the <code>cdproject</code> command to go back to this directory at any time.</p>
+<h2>Starting a pyramid project</h2>
+<p>First, we’ll make sure that the virtualenv is activated:</p>
+<div class="highlight"><pre><span class="nv">$ </span>workon pyramid-tutorial
+</pre></div>
+
+
+<p>Then we’ll install the <code>pyramid</code> package from the Python Package Index (PyPI):</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install pyramid
+</pre></div>
+
+
+<h2>Using version control</h2>
+<p>We initialize a git repository:</p>
+<div class="highlight"><pre><span class="nv">$ </span>git init
+</pre></div>	
+
+	</article>
+
+    <p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	</p>
+
+
+		  </div>	
+		  
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Categories</h2>
+	          <ul>
+	              <li class="active"><a href="https://ronnix.github.io/tutorials/category/python.html">Python</a></li>
+	          </ul>
+	        </nav>
+
+
+
+		  </div>
+
+	  </div>
+
+      <footer>
+		<p role="contentinfo">
+		  © 2013 Ronan Amicel - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Working with Python virtualenvs - Tutorials</title>	
+	<meta name="author" content="Ronan Amicel">
+	
+
+	<meta name="description" content="Prerequisites In order to follow this tutorial, you should have: a Unix-like (such as OS X or Linux) Python What is a Python virtual environment? A virtualenv (or venv) is an isolated Python environment where we can install packages locally, in isolation from the global Python packages. When you're ...">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="https://ronnix.github.io/tutorials/theme/css/main.css" type="text/css" />
+		
+
+    <link href="https://ronnix.github.io/tutorials/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Tutorials Atom Feed" />
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="https://ronnix.github.io/tutorials/feeds/all.atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed"/></a>
+	    </div>
+		<a href="https://ronnix.github.io/tutorials" class="title">Tutorials</a>
+      </header>
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+		<h1>Working with Python virtualenvs</h1>
+		
+<div class="metadata">
+  <time datetime="2015-01-02T00:00:00+01:00" pubdate>Ven 02 janvier 2015</time>
+    <address class="vcard author">
+      by <a class="url fn" href="https://ronnix.github.io/tutorials/author/ronan-amicel.html">Ronan Amicel</a>
+    </address>
+  in <a href="https://ronnix.github.io/tutorials/category/python.html">Python</a>
+</div>		
+		<h2>Prerequisites</h2>
+<p>In order to follow this tutorial, you should have:</p>
+<ul>
+<li>a Unix-like (such as OS X or Linux)</li>
+<li>Python</li>
+</ul>
+<h2>What is a Python virtual environment?</h2>
+<p>A <em>virtualenv</em> (or <em>venv</em>) is an isolated Python environment where we can install packages locally, in isolation from the global Python packages.</p>
+<p>When you're working on multiple projects, it also allows different projects to use different versions of the same framework or library.</p>
+<h2>The tools</h2>
+<p>The traditional way to create <em>virtualenvs</em> is using the aptly-named <a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> tool by Ian Bicking.</p>
+<p>A popular enhancement is <a href="https://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> by Doug Hellmann, that makes it more convenient to use and adds some powerful features.</p>
+<p>In this tutorial, we'll first see how to use <em>virtualenv</em> directly, then we'll see how to use <em>virtualenvwrapper</em>.</p>
+<p>Note that starting with version 3.3, Python comes with some basic support for virtualenvs, including the new <code>pyvenv</code> command: https://docs.python.org/3/library/venv.html</p>
+<h2>Option 1: virtualenv</h2>
+<p>In this section, we'll see how to create and manage <em>virtualenvs</em> using the <a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> tool.</p>
+<h3>Installing virtualenv</h3>
+<p>We’ll start by installing <code>virtualenv</code> using the pip package manager:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv
+</pre></div>
+
+
+<p>Note that you may need to use <code>sudo</code> to run the command with administrative privileges:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+
+
+<h3>Creating a virtualenv</h3>
+<p>To create a virtualenv, we must provide the name of the directory that will contain the virtualenv files. If the directory does not exist, it will be created:</p>
+<div class="highlight"><pre><span class="nv">$ </span>virtualenv VENV
+New python executable in VENV/bin/python2.7
+Also creating executable in VENV/bin/python
+Installing setuptools, pip...done.
+</pre></div>
+
+
+<p>Note that if you don't want to use the default Python interpreter, you can choose to use a specific one in this virtualenv using the <code>--python</code> flag. For example:</p>
+<div class="highlight"><pre><span class="nv">$ </span>virtualenv VENV --python<span class="o">=</span>/usr/local/bin/python3.4
+</pre></div>
+
+
+<p>We can see that the <code>virtualenv</code> command has created a <code>VENV</code> directory, and that this directory contains several subdirectories:</p>
+<div class="highlight"><pre><span class="nv">$ </span>ls VENV
+bin     include lib
+</pre></div>
+
+
+<h3>Working with a virtualenv</h3>
+<p>The <code>bin</code> subdirectory contains a <code>python</code> executable that is bound to this virtualenv. This is an isolated Python interpreter, that only has access to the packages installed within the virtualenv:</p>
+<div class="highlight"><pre><span class="nv">$ </span>VENV/bin/python --version
+</pre></div>
+
+
+<p>The <code>bin</code> subdirectory also contains a <code>pip</code> executable that can be used to install packages inside the virtualenv:</p>
+<div class="highlight"><pre><span class="nv">$ </span>VENV/bin/pip install somepackage
+</pre></div>
+
+
+<p>The Python files from installed packages will typically be found in <code>VENV/lib/pythonX.X/site-packages/</code> (the exact path depends on the Python version), and any included scripts will be in <code>VENV/bin/</code>.</p>
+<h3>Activating a virtualenv</h3>
+<p>Each virtualenv comes with a convenient shell script that can modify the shell's <code>PATH</code> viariable so that commands from the virtualenv (that is those in the <code>VENV/bin</code> directory) are the first to be found.</p>
+<p>This script also changes your prompt to remind you that you're working with this specific virtualenv.</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">source </span>VENV/bin/activate
+<span class="o">(</span>VENV<span class="o">)</span><span class="nv">$ </span>which python
+<span class="o">(</span>VENV<span class="o">)</span><span class="nv">$ </span>which pip
+<span class="o">(</span>VENV<span class="o">)</span><span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$PATH</span>
+<span class="o">(</span>VENV<span class="o">)</span><span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$VIRTUAL_ENV</span>
+</pre></div>
+
+
+<p>Note that you need to use <code>source</code> in order to run the script in the context of the current shell (otherwise the script would be run in a sub-process, and could not change the environment of its parent shell).</p>
+<p>When you're done, you can revert those changes by using the <code>deactivate</code> alias:</p>
+<div class="highlight"><pre>(VENV)$ deactivate
+</pre></div>
+
+
+<h2>Option 2: virtualenvwrapper</h2>
+<p>The most convenient and most powerful way to create and manage virtualenvs is to use <a href="https://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a>. As its name suggests, it is built on top of the <em>virtualenv</em> tool.</p>
+<h3>Installing virtualenvwrapper</h3>
+<p>We’ll start by installing <code>virtualenvwrapper</code> using pip:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install virtualenvwrapper
+</pre></div>
+
+
+<p>You may need to use <code>sudo</code> to run the command with administrative privileges:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenvwrapper
+</pre></div>
+
+
+<p>Then you must add the following lines to your shell startup script (typically <code>$HOME/.bashrc</code>):</p>
+<div class="highlight"><pre><span class="x">export WORKON_HOME=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/.virtualenvs</span>
+<span class="x">export PROJECT_HOME=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/Devel</span>
+<span class="x">source /usr/local/bin/virtualenvwrapper.sh</span>
+</pre></div>
+
+
+<p>Note that you have to source this file in order to apply the changes to the current shell:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">source</span> <span class="nv">$HOME</span>/.bashrc
+</pre></div>
+
+
+<h2>Creating a virtualenv</h2>
+<p>Now we’ll use the <code>mkvirtualenv</code> command to create a <em>virtualenv</em>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv myproject
+</pre></div>
+
+
+<p>Note that the virtualenv directory is not created in the current directory, but in the <code>$WORKON_HOME</code> directory.</p>
+<p>A nice benefit of this is that files from the virtualenv are not mixed with your project files, so there is no need to add configuration to your text editor or version control system to ignore them.</p>
+<p>Also note that the prompt has changed to tell you that the <em>virtualenv</em> has automatically been activated (no need to manually source the <code>activate</code> script).</p>
+<h2>Activating a virtualenv</h2>
+<p>To activate an existing virtualenv, <em>virtualenvwrapper</em> provides a command called <code>workon</code>, that supports autocompletion:</p>
+<div class="highlight"><pre><span class="nv">$ </span>workon myproject
+</pre></div>
+
+
+<p>When you are done working with a virtualenv, you can deactivate it:</p>
+<div class="highlight"><pre><span class="nv">$ </span>deactivate
+</pre></div>
+
+
+<h3>Setting up a project directory</h3>
+<p>Let’s say we want a directory where we can put our project source code:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir myproject
+<span class="nv">$ </span><span class="nb">cd </span>myproject
+</pre></div>
+
+
+<p>The <code>setvirtualenvproject</code> allows us to associate this working directory with our virtualenv:</p>
+<div class="highlight"><pre><span class="nv">$ </span>setvirtualenvproject
+</pre></div>
+
+
+<p>Now, each time we will use the <code>workon myproject</code> command, the virtualenv will be activated and the current directory will be changed to the project’s working directory.</p>
+<p>We can also use the <code>cdproject</code> command to go back to this directory at any time.</p>	
+
+	</article>
+
+    <p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-lang="en" data-size="large" data-related="">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	</p>
+
+
+		  </div>	
+		  
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Categories</h2>
+	          <ul>
+	              <li class="active"><a href="https://ronnix.github.io/tutorials/category/python.html">Python</a></li>
+	          </ul>
+	        </nav>
+
+
+
+		  </div>
+
+	  </div>
+
+      <footer>
+		<p role="contentinfo">
+		  © 2013 Ronan Amicel - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>
