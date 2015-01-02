@@ -12,9 +12,9 @@ In order to follow this tutorial, you should have:
 
 ## What is a Python virtual environment?
 
-A *virtualenv* (or *venv*) is an isolated Python environment where we can install packages locally, in isolation from the global Python packages.
+A *virtualenv* (or *venv*) is an isolated Python environment where you can install packages locally, in isolation from the global Python packages.
 
-When you're working on multiple projects, it also allows different projects to use different versions of the same framework or library.
+When you're working on multiple projects, it also allows different projects to use different versions of the same framework or library without any conflicts.
 
 ## The tools
 
