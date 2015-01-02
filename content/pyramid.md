@@ -1,6 +1,7 @@
 Title: Pyramid tutorial
 Date: 2015-01-02
 Category: Python
+Status: draft
 
 ## Prerequisites
 

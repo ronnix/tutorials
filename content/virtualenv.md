@@ -1,6 +1,7 @@
 Title: Working with Python virtualenvs
 Date: 2015-01-02
 Category: Python
+Status: draft
 
 ## Prerequisites
 
